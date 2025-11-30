@@ -2,9 +2,9 @@
 
 With this project I want to deepen my knowledge in SQL and building a database.
 
-I will be following a YouTube videos from channel Data with Baraa.
-I will practice it on my own to not get only theoretical knowledge but also practical one. 
-I will create a template which I can use for the next projects
+- I will be following a YouTube videos from channel Data with Baraa.
+- I will practice it on my own to not get only theoretical knowledge but also practical one. 
+- I will create a template which I can use for the next projects
 
 ## Main scope 
 Building data warehouse with SQL Server, including ETL processes, data modeling and analytics 
