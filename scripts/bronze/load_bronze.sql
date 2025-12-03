@@ -18,7 +18,7 @@ BEGIN
         PRINT '======================================================';
         PRINT 'CRM DATA LOADING (Bronze Layer)';
         PRINT '======================================================';
-        PRINT '>> ---------------------------------------------------';
+        
 
         -- 1. CRM Customer Info
         SET @bronze_start_time = GETDATE();
@@ -156,4 +156,5 @@ BEGIN
     PRINT 'Error Message' + CAST (Error_number() AS NVARCHAR) ;
     PRINT '======================================================';
     END CATCH
+
 END
