@@ -19,6 +19,9 @@ Parameters:
 
 Usage Example:
     EXEC silver.load_silver;
+
+Explanation of queries in folder:
+sql-data-warehouse-portfolio-project/queries
 ===============================================================================
 */
 
@@ -282,3 +285,4 @@ BEGIN
         PRINT '=========================================='
     END CATCH
 END
+
