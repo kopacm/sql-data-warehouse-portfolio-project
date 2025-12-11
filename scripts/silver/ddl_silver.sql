@@ -106,5 +106,5 @@ CREATE TABLE silver.erp_px_cat_g1v2 (
 );
 GO
 
-PRINT 'silver tables created successfully!';
+PRINT 'Silver Tables Created Successfully!';
 PRINT 'Run BULK INSERT script next for data loading.';
