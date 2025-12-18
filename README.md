@@ -1,15 +1,13 @@
 # SQL Data warehouse portfolio project 
 
-With this project I want to deepen my knowledge in SQL and building a database.
+With this project I built data warehouse with SQL Server, including ETL processes, data modeling
 
-- I will be following a YouTube videos from channel Data with Baraa.
-- I will practice it on my own to not get only theoretical knowledge but also practical one. 
-- I will create a template which I can use for the next projects
+My approach:
+- I watched YouTube tutorials from the channel Data with Baraa and took notes.
+- I practiced on my own to gain not only theoretical knowledge but also practical experience.
+- While I practiced I created a reusable template to support future projects.
 
-## Main scope 
-Building data warehouse with SQL Server, including ETL processes, data modeling and analytics 
-
-
+![Overview](/pics/Data_warehouse_overview.png)
 
 ## Project Requirements
 
@@ -32,14 +30,5 @@ Develop a modern data warehouse using SQL Server to consolidate sales data, enab
 - **Documentation**: Provide clear documentation of the data model to support both business stakeholders and analytics teams.
 
 ---
-### BI: Analytics & Reporting (Data Analysis)
 
-#### Objective
 
-Develop SQL-based analytics to deliver detailed insights into:
-
-- **Customer Behavior**
-- **Product Performance**
-- **Sales Trends**
-
-These insights empower stakeholders with key business metrics, enabling strategic decision-making.  
