@@ -46,4 +46,18 @@ Develop a modern data warehouse using SQL Server to consolidate sales data, enab
 </table>
 
 
+## 🟢 Protocols for each layer
+<table>
+  <tr>
+    <td align="center">
+      <img src="/pics/bronze_layer.png" alt="bronze" width="400"/><br/>
+      <a href="/docs/Protocol–Bronze_Layer_Build_Database.pdf">Extended Bronze layer protocol</a>
+    </td>
+    <td align="center">
+      <img src="/pics/silver_layer.png" alt="silver" width="400" /><br/>
+      <a href="/docs/Protocol–Silver_Layer_Build_Database.pdf">Extended Silver layer protocol</a>
+    </td>
+  </tr>
+</table>
+
 
