@@ -1,15 +1,10 @@
 # SQL Data warehouse portfolio project 
 
-With this project I built data warehouse with SQL Server, including ETL processes, data modeling
-
-My approach:
-- I watched YouTube tutorials from the channel Data with Baraa and took notes.
-- I practiced on my own to gain not only theoretical knowledge but also practical experience.
-- While I practiced I created a reusable template to support future projects.
+With this project I built data warehouse with SQL Server, including ETL processes and data modeling
 
 ![Overview](/pics/Data_warehouse_overview.png)
 
-### 🔵 Requirements Analysis
+### Requirements Analysis
 
 #### Project Requirements -  Building the Data Warehouse (Data Engineering)
 
@@ -32,7 +27,7 @@ Develop a modern data warehouse using SQL Server to consolidate sales data, enab
 ---
 ## My Approach
 
-##  Design Data Architecture
+##  Designing Data Architecture
 
 First I needed to make sure how I will approach the Data Managment. I decided for Data Warehouse - Medallion Architecture.
 I created definition for each layer and all lower mentioned parameters. 
@@ -51,12 +46,18 @@ I created definition for each layer and all lower mentioned parameters.
 ##  Project Initialization 
 I created Detailed Project Tasks in my Obsidian vault. 
 
-For purpose of establishing consistency in all objects (schemas, tables, columns, folders, stored procedures). I used this [Naming Conventions](/docs/Naming_Conventions_Guide.pdf) and I chose **Snake_case** code writting style and created SQL Script template which was follow through whole project
+For purpose of establishing consistency in all objects (schemas, tables, columns, folders, stored procedures). I used this [Naming Conventions](/docs/Naming_Conventions_Guide.pdf) and I chose **Snake_case** code writting style and created SQL Script template which was followed through whole project
 
 For documentation I created this GitHub Repo
 
+## ETL methods
 
-## 🟢 Protocols for each layer
+This are all methods I used in this project.
+
+ <img src="/pics/ETL.png" alt="Data_layers" width="500" />
+
+
+## Documentation 
 
 While working on each layer I created for future use Protocols, Data Flow, Database relationships and Star schema 
 <table>
@@ -88,5 +89,12 @@ While working on each layer I created for future use Protocols, Data Flow, Datab
       <a href="/docs/Protocol–Gold_Layer_Build_Database.pdf">Extended Gold layer protocol</a>    
   </tr>
 </table>
+
+
+### How I worked:
+- I watched YouTube tutorials from the channel [Data with Baraa](https://www.youtube.com/watch?v=9GVqKuTVANE&list=PLNcg_FV9n7qaUWeyUkPfiVtMbKlrfMqA8) and took notes. 
+- I practiced on my own to gain not only theoretical knowledge but also practical experience.
+- While I practiced I created a reusable template to support future projects.
+
 
 
