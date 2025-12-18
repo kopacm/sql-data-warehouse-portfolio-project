@@ -83,6 +83,9 @@ While working on each layer I created for future use Protocols, Data Flow, Datab
       <img src="/pics/silver_layer.png" alt="silver" width="400" /><br/>
       <a href="/docs/Protocol–Silver_Layer_Build_Database.pdf">Extended Silver layer protocol</a>
     </td>
+    <td align="center">
+      <img src="/pics/gold_layer.png" alt="silver" width="400" /><br/>
+      <a href="/docs/Protocol–Gold_Layer_Build_Database.pdf">Extended Gold layer protocol</a>    
   </tr>
 </table>
 
