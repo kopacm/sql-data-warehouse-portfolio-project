@@ -9,15 +9,17 @@ My approach:
 
 ![Overview](/pics/Data_warehouse_overview.png)
 
-## Project Requirements
+## 🔵 Requirements Analysis
 
-### Building the Data Warehouse (Data Engineering)
+### Project Requirements
 
-#### Objective
+#### Building the Data Warehouse (Data Engineering)
+
+##### Objective
 
 Develop a modern data warehouse using SQL Server to consolidate sales data, enabling analytical reporting and informed decision-making.
 
-#### Specifications
+##### Specifications
 
 - **Data Sources**: Import data from two source systems (ERP and CRM) provided as CSV files.
 
@@ -30,5 +32,18 @@ Develop a modern data warehouse using SQL Server to consolidate sales data, enab
 - **Documentation**: Provide clear documentation of the data model to support both business stakeholders and analytics teams.
 
 ---
+
+## 🔵 Design Data Architecture
+<table>
+  <tr>
+    <td>
+       <img src="/pics/Data_Management_Approach.png" alt="Data_Management_Approach" width="400"/>
+    </td>
+    <td>
+      <img src="/pics/Design_layers.png" alt="Data_layers" width="400" />
+    </td>
+  </tr>
+</table>
+
 
 
