@@ -30,10 +30,9 @@ Develop a modern data warehouse using SQL Server to consolidate sales data, enab
 - **Documentation**: Provide clear documentation of the data model to support both business stakeholders and analytics teams.
 
 ---
-
 ## My Approach
 
-###  Design Data Architecture
+##  Design Data Architecture
 
 First I needed to make sure how I will approach the Data Managment. I decided for Data Warehouse - Medallion Architecture.
 I created definition for each layer and all lower mentioned parameters. 
@@ -49,16 +48,31 @@ I created definition for each layer and all lower mentioned parameters.
 </table>
 
 
-###  Project Initialization 
+##  Project Initialization 
 I created Detailed Project Tasks in my Obsidian vault. 
 
-For purpose of establishing consistency in all objects (schemas, tables, columns, folders, stored procedures). I used this [Naming Conventions](/docs/Naming_Conventions_Guide.pdf) and I chose **Snake_case** code writting style.
+For purpose of establishing consistency in all objects (schemas, tables, columns, folders, stored procedures). I used this [Naming Conventions](/docs/Naming_Conventions_Guide.pdf) and I chose **Snake_case** code writting style and created SQL Script template which was follow through whole project
 
-### Build Bronze Layer
-### Build Silver Layer
-### Build Gold Layer
+For documentation I created this GitHub Repo
+
 
 ## 🟢 Protocols for each layer
+
+While working on each layer I created for future use Protocols, Data Flow, Database relationships and Star schema 
+<table>
+  <tr>
+    <td align="center">
+    <img src="/docs/Data_Flow_chart.drawio.png" alt="Data Flow" width="600"/>
+    </td>
+    <td align="center">
+    <img src="/docs/Database_relationships.drawio.png" alt="Database relationships" width="600"/>
+     </td>
+    <td align="center">
+    <img src="/docs/Sales_Data_Mart-Star_schema.drawio.png" alt="Star schema" width="600"/>
+    </td>
+  </tr>
+</table>
+
 <table>
   <tr>
     <td align="center">
