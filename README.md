@@ -37,10 +37,10 @@ Develop a modern data warehouse using SQL Server to consolidate sales data, enab
 <table>
   <tr>
     <td>
-       <img src="/pics/Data_Management_Approach.pn" alt="Data_Management_Approach" width="400"/>
+       <img src="/pics/Data_Management_Approach.png" alt="Data_Management_Approach" width="400"/>
     </td>
     <td>
-      <img src="/pics/Design_layers.pn" alt="Data_layers" width="400" />
+      <img src="/pics/Design_layers.png" alt="Data_layers" width="400" />
     </td>
   </tr>
 </table>
