@@ -9,17 +9,15 @@ My approach:
 
 ![Overview](/pics/Data_warehouse_overview.png)
 
-## 🔵 Requirements Analysis
+### 🔵 Requirements Analysis
 
-### Project Requirements
+#### Project Requirements -  Building the Data Warehouse (Data Engineering)
 
-#### Building the Data Warehouse (Data Engineering)
-
-##### Objective
+**Objective**
 
 Develop a modern data warehouse using SQL Server to consolidate sales data, enabling analytical reporting and informed decision-making.
 
-##### Specifications
+**Specifications**
 
 - **Data Sources**: Import data from two source systems (ERP and CRM) provided as CSV files.
 
@@ -33,7 +31,12 @@ Develop a modern data warehouse using SQL Server to consolidate sales data, enab
 
 ---
 
-## 🔵 Design Data Architecture
+## My Approach
+
+###  Design Data Architecture
+
+First I needed to make sure how I will approach the Data Managment. I decided for Data Warehouse - Medallion Architecture.
+I created definition for each layer and all lower mentioned parameters. 
 <table>
   <tr>
     <td>
@@ -45,6 +48,15 @@ Develop a modern data warehouse using SQL Server to consolidate sales data, enab
   </tr>
 </table>
 
+
+###  Project Initialization 
+I created Detailed Project Tasks in my Obsidian vault. 
+
+For purpose of establishing consistency in all objects (schemas, tables, columns, folders, stored procedures). I used this [Naming Conventions](/docs/Naming_Conventions_Guide.pdf) and I chose **Snake_case** code writting style.
+
+### Build Bronze Layer
+### Build Silver Layer
+### Build Gold Layer
 
 ## 🟢 Protocols for each layer
 <table>
