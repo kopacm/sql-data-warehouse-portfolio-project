@@ -1,4 +1,4 @@
-# SQL Data warehouse portfolio project 
+# SQL Data Warehouse Portfolio Project 
 
 With this project I built data warehouse with SQL Server, including ETL processes and data modeling
 
