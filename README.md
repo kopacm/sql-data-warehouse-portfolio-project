@@ -1,100 +1,119 @@
-# SQL Data Warehouse Portfolio Project 
+# 🛒 End-to-End Data Warehouse: Sales Data Mart
+### *From Raw CSVs to Analytics-Ready Data Warehouse using SQL Server*
 
-With this project I built data warehouse with SQL Server, including ETL processes and data modeling
-
-![Overview](/pics/Data_warehouse_overview.png)
-
-### Requirements Analysis
-
-#### Project Requirements -  Building the Data Warehouse (Data Engineering)
-
-**Objective**
-
-Develop a modern data warehouse using SQL Server to consolidate sales data, enabling analytical reporting and informed decision-making.
-
-**Specifications**
-
-- **Data Sources**: Import data from two source systems (ERP and CRM) provided as CSV files.
-
-- **Data Quality**: Cleanse and resolve data quality issues prior to analysis.
-
-- **Integration**: Combine both sources into a single, user-friendly data model designed for analytical queries.
-
-- **Scope**: Focus on the latest dataset only; historization of data is not required.
-
-- **Documentation**: Provide clear documentation of the data model to support both business stakeholders and analytics teams.
+![Overview](pics/Data_warehouse_overview.png)
 
 ---
-## My Approach
 
-##  Designing Data Architecture
+## 🚀 **Project Overview**
+**The Goal:** Transform disjointed sales data from two different systems (ERP & CRM) into a centralized, scalable Data Warehouse to unlock 360° customer views and analyze product performance.
 
-First I needed to make sure how I will approach the Data Managment. I decided for Data Warehouse - Medallion Architecture.
-I created definition for each layer and all lower mentioned parameters. 
-<table>
-  <tr>
-    <td>
-       <img src="/pics/Data_Management_Approach.png" alt="Data_Management_Approach" width="400"/>
-    </td>
-    <td>
-      <img src="/pics/Design_layers.png" alt="Data_layers" width="400" />
-    </td>
-  </tr>
-</table>
+**The Solution:** Built a robust ETL pipeline using the **Medallion Architecture** (Bronze, Silver, Gold) in SQL Server. The system handles data quality issues, historization, and logic integration to feed a Star Schema optimized for BI reporting.
 
+**Key Metrics:**
+* **Source Systems:** 2 (CRM & ERP)
+* **Architecture:** Medallion (Bronze $\to$ Silver $\to$ Gold)
+* **Tech Stack:** SQL Server (T-SQL), Excel/CSV, Draw.io
 
-##  Project Initialization 
-I created Detailed Project Tasks in my Obsidian vault. 
+---
 
-For purpose of establishing consistency in all objects (schemas, tables, columns, folders, stored procedures). I used this [Naming Conventions](/docs/Naming_Conventions_Guide.pdf) and I chose **Snake_case** code writting style and created SQL Script template which was followed through whole project
+## 🏗️ **Architecture & Data Flow**
 
-For documentation I created this GitHub Repo
+I designed a **Medallion Architecture** to ensure data traceability and quality.
 
-## ETL methods
+![Data Flow Chart](docs/Data_Flow_chart.drawio.png)
 
-This are all methods I used in this project.
+1.  **Bronze Layer:** Raw ingestion (Full Load).
+2.  **Silver Layer:** Cleansed, standardized, and deduplicated data.
+3.  **Gold Layer:** Business-ready Star Schema (Facts & Dimensions).
 
- <img src="/pics/ETL.png" alt="Data_layers" width="500" />
+---
 
+## 🛠️ **Engineering Implementation**
 
-## Documentation 
+### **1. The Bronze Layer: Raw Ingestion**
+*Focus: Traceability & Performance*
+* **Bulk Loading:** Utilized `BULK INSERT` for high-performance data loading from CSVs.
+* **Idempotency:** Re-runnable pipelines using `TRUNCATE` before loading to prevent duplicate data buildup.
+* **Metadata:** Added `_ingest_date` to track when data entered the warehouse.
 
-While working on each layer I created for future use Protocols, Data Flow, Database relationships and Star schema 
-<table>
-  <tr>
-    <td align="center">
-    <img src="/docs/Data_Flow_chart.drawio.png" alt="Data Flow" width="600"/>
-    </td>
-    <td align="center">
-    <img src="/docs/Database_relationships.drawio.png" alt="Database relationships" width="600"/>
-     </td>
-    <td align="center">
-    <img src="/docs/Sales_Data_Mart-Star_schema.drawio.png" alt="Star schema" width="600"/>
-    </td>
-  </tr>
-</table>
+### **2. The Silver Layer: Transformation & Quality**
+*Focus: Deduplication, History, and Logic*
+This layer houses the core engineering logic. I wrote stored procedures to handle specific data challenges found in the source:
 
-<table>
-  <tr>
-    <td align="center">
-      <img src="/pics/bronze_layer.png" alt="bronze" width="400"/><br/>
-      <a href="/docs/Protocol–Bronze_Layer_Build_Database.pdf">Extended Bronze layer protocol</a>
-    </td>
-    <td align="center">
-      <img src="/pics/silver_layer.png" alt="silver" width="400" /><br/>
-      <a href="/docs/Protocol–Silver_Layer_Build_Database.pdf">Extended Silver layer protocol</a>
-    </td>
-    <td align="center">
-      <img src="/pics/gold_layer.png" alt="silver" width="400" /><br/>
-      <a href="/docs/Protocol–Gold_Layer_Build_Database.pdf">Extended Gold layer protocol</a>    
-  </tr>
-</table>
+* **Handling History (SCD Type Logic):**
+    Used `LEAD()` window functions to calculate the `end_date` of product records based on the `start_date` of the next record, fixing gaps in historical product tracking.
+    ```sql
+    -- Example: Logic to fix historical gaps
+    CASE 
+        WHEN prd_end_dt < prd_start_dt 
+        THEN CAST(LEAD(prd_start_dt) OVER (PARTITION BY prd_key ORDER BY prd_start_dt) - 1 AS DATE)
+        ELSE prd_end_dt 
+    END AS prd_end_dt
+    ```
 
+* **Data Validation Rules:**
+    Identified and corrected invalid sales records where `Sales != Quantity * Price`.
 
-### How I worked:
-- I watched YouTube tutorials from the channel [Data with Baraa](https://www.youtube.com/watch?v=9GVqKuTVANE&list=PLNcg_FV9n7qaUWeyUkPfiVtMbKlrfMqA8) and took notes. 
-- I practiced on my own to gain not only theoretical knowledge but also practical experience.
-- While I practiced I created a reusable template to support future projects.
+* **Deduplication:**
+    Applied `RANK() OVER (PARTITION BY ...)` to identify the most recent customer record and filter out older duplicates, ensuring a "Single Source of Truth".
 
+* **Standardization:**
+    Normalized country codes (e.g., 'DE' $\to$ 'Germany') and gender values using standardized `CASE` logic.
 
+### **3. The Gold Layer: Dimensional Modeling**
+*Focus: Analytics & Reporting*
+Designed a **Star Schema** to enable fast aggregation in BI tools.
 
+![Star Schema](docs/Sales_Data_Mart-Star_schema.drawio.png)
+
+* **Fact Table:** `fact_sales` (Transactions)
+* **Dimensions:** `dim_customers`, `dim_products`
+* **Surrogate Keys:** Generated independent keys (`customer_key`) to decouple the warehouse from source system IDs.
+* **Cross-System Integration:** Implemented "Fallback Logic" for customer gender—prioritizing CRM data but falling back to ERP data if the CRM value is NULL.
+
+---
+
+## 🔄 **Standardization & Reusability**
+*My Philosophy: "Build once, improve continuously."*
+
+I believe in reducing friction for future projects by creating reusable assets. Instead of treating this as a one-off script, I developed comprehensive **Technical Protocols** (SOPs) for every layer of the warehouse. This ensures that any future data source can be integrated with the same consistency and speed.
+
+| Bronze Layer Protocol | Silver Layer Protocol | Gold Layer Protocol |
+| :---: | :---: | :---: |
+| ![Bronze](pics/bronze_layer.png) | ![Silver](pics/silver_layer.png) | ![Gold](pics/gold_layer.png) |
+| *[Standardized Ingestion Checklist]* | *[Quality & Cleansing Framework]* | *[Modeling & Business Mapping]* |
+
+---
+
+## 📊 **Reporting Views**
+Instead of exposing complex joins to end-users, I created an abstraction layer of Views for common business questions.
+
+### **Customer Report View (`gold.report_customers`)**
+*Consolidated view for marketing segmentation.*
+* **Segmentation:** Automatically categorizes customers into `VIP`, `Regular`, or `New` based on spending history and lifespan.
+* **Age Groups:** Dynamically buckets customers into age ranges ('20-29', '30-39').
+
+### **Product Report View (`gold.report_products`)**
+*Consolidated view for inventory management.*
+* **Performance:** Calculates `Avg_Monthly_Sales` and identifies "High Performers" vs "Low Performers."
+* **Lifespan:** Derives product longevity in months to normalize revenue comparisons.
+
+---
+
+## 🔍 **Advanced Analysis**
+This repository focuses on the **Data Engineering** and **Architecture** aspects. 
+
+👉 **[View the Advanced Exploratory Data Analysis (EDA) & Business Insights project](https://github.com/kopacm/SQL-Data-Analysis-Project/blob/main/README.md)**
+
+---
+
+## 👏 **Acknowledgements & Learning**
+This project was inspired by the guidance of **Data with Baraa**.
+* **Mentorship:** I followed the **[Data with Baraa YouTube Series](https://www.youtube.com/watch?v=9GVqKuTVANE&list=PLNcg_FV9n7qaUWeyUkPfiVtMbKlrfMqA8)** to understand the core concepts of Data Warehousing.
+* **Execution:** I practiced by building this project from scratch—not just watching, but coding, debugging, and extending the original concepts with my own protocols and documentation to ensure practical mastery.
+
+---
+
+## 📬 **Contact**
+**Miroslav Kopac** *Data Analyst* [LinkedIn](https://www.linkedin.com/in/miroslavkopac/) | [Email](mailto:kopacmiroslav@gmail.com)
